@@ -60,12 +60,12 @@ const checkinSlice = createSlice({
       success: false,
     },
     checkinList: {
-      current: {},
+      current: [],
       loading: false,
       success: false,
     },
     checkoutList: {
-      current: {},
+      current: [],
       loading: false,
       success: false,
     },

@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 export const login = createAsyncThunk("user/login", async (param, thunkAPI) => {
     const { username, password, cb } = param;
-    console.log("param", param);
     const result = await signInRequest({ username, password, cb })
       .then((res) => {
         console.log("res",res);

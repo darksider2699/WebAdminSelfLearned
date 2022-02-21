@@ -28,5 +28,10 @@
         "display_name": "Covid Information",
         "route": "/covid_information",
         "icon": "bx bxs-virus"
+    },
+    {
+        "display_name": "Account Information",
+        "route": "/account",
+        "icon": "bx bxs-user-account"
     }
 ]

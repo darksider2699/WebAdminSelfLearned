@@ -6,6 +6,7 @@ import Overview from "../pages/Overview/Overview";
 import SituationsList from "../pages/SituationsList/SituationList";
 import Checkout from "../pages/Checkout/Checkout";
 import CovidInformation from "../pages/CovidInformation/CovidInformation";
+import Account from "../pages/Account/Account";
 const Routes = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const Routes = () => {
         <Route path="/situations_list" component={SituationsList} />
         <Route path="/checkout_status" component={Checkout}/>
         <Route path = "/covid_information" component={CovidInformation} />
+        <Route path = "/account" component={Account} />
       </Switch> 
     </div>
   );

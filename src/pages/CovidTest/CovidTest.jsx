@@ -18,14 +18,19 @@ import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { flexbox, padding } from "@mui/system";
+import YesNoModal from "../../components/YesNoModal";
+import {createNewCase } from "../../store/slices/covidCaseSlice";
 
 const CovidTest = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [listTestAdded, setListTestAdded] = useState();
+  const [isCreateNewCase, setIsCreateNewCase] = useState();
+
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const [dateSelected, setDateSelected] = useState(new Date());
+  const [idUserToCreateCase,setIdUserToCreateCase] = useState();
   const allTestResult =
     useSelector((state) => state.covidTestStore.testResultList.current) || [];
 
@@ -43,6 +48,11 @@ const CovidTest = () => {
 
   let id = 0;
   const [isShowTable, setIsShowTable] = useState(false);
+  const handleWarningClick = (param) =>{
+    console.log("Param", param.target);
+    setIdUserToCreateCase(param.target.value);
+    setIsCreateNewCase(true);
+  }
   const columns = [
     {
       name: "name",
@@ -104,14 +114,14 @@ const CovidTest = () => {
       },
     },
     {
-      name: "",
+      name: "warning",
       label: "Action",
       options: {
         filter: false,
         sort: false,
-        customBodyRender: (value) => {
+        customBodyRender: (value,tableMetaData) => {
           return (
-            <Button variant="outlined" color="error">
+            <Button variant="outlined" color="error" disabled = {value.isNegative} onClick = {handleWarningClick} value={value.id}>
               Warn
             </Button>
           );
@@ -151,6 +161,10 @@ const CovidTest = () => {
         email:
           value.medicalUserInformation.user.companyUserInformation.companyEmail,
         isNegative: !value.positive,
+        warning: {
+          isNegative: !value.positive,
+          id: value.medicalUserInformation.id
+        }
       };
     });
     return result;
@@ -212,7 +226,18 @@ const CovidTest = () => {
       })
     );
   };
-
+const handleConfirmAddNewCase = async() => {
+  await dispatch(
+    createNewCase({
+      id: idUserToCreateCase,
+      covidStatus: 0,
+      dateRecord: moment(new Date()).format("YYYY-MM-DD"),
+      cb: () => {
+      },
+    })
+  );
+  setIsCreateNewCase(false)
+}
   console.log("LIST DATA ADDED: ", listTestAdded);
   return (
     <Box display={"block"}>
@@ -255,6 +280,18 @@ const CovidTest = () => {
           />
         </ThemeProvider>
       </Box>
+      <YesNoModal
+        isModalVisible={isCreateNewCase}
+        hideModal={() => {}}
+        title={"Confirm"}
+        message={"Are you sure you want to add new Covid Case?"}
+        okText={"OK"}
+        cancelText={"Cancel"}
+        onCancel={() => {
+          setIsCreateNewCase(false);
+        }}
+        onOk={handleConfirmAddNewCase}
+      />
     </Box>
   );
 };

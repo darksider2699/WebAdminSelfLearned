@@ -244,7 +244,7 @@ const QuestionTab = ({ question, type, onSave, onUpdateData }) => {
         isModalVisible={isYesNoModalDeleteQuestionVisible}
         hideModal={() => {}}
         title={"Confirm"}
-        message={"Are you sure you want to delete this answer?"}
+        message={"Are you sure you want to delete this question?"}
         okText={"OK"}
         cancelText={"Cancel"}
         onCancel={() => {

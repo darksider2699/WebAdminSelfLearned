@@ -56,6 +56,7 @@ const CovidInformation = () => {
     await axios
       .get(URL_API, {
         headers: {
+          'Access-Control-Allow-Origin': '*',
           Authorization: `Basic ${token}`,
         },
       })

@@ -216,6 +216,7 @@ const Overview = () => {
     searchPlaceholder: "Search",
     //count, // Use total number of items
   };
+  console.log("Local storage", listCheckinByDate)
   return (
     <div>
       <Box>

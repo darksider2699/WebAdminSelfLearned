@@ -239,6 +239,8 @@ const Checkout = () => {
   const handleOnChangeDate = async (event) => {
     await setDateRecord(event.target.value);
   };
+  console.log("Local storage", listCheckoutByDate)
+
   return (
     <Box marginLeft={0}>
       <Box>

@@ -43,7 +43,9 @@ export const getCheckoutByDateRequest = (body) => {
     });
 };
 export const getCheckoutByDateAndIdUserRequest = (param) => {
-  return RequestHelper.post(`${apiUrl}/user/daily_checkout/${param.id}`, {dateRecord: param.dateRecord})
+  return RequestHelper.post(`${apiUrl}/user/daily_checkout/${param.id}`, {
+    dateRecord: param.dateRecord,
+  })
     .then((res) => {
       console.log("checkout by date and id", res.data);
       return res.data;
@@ -153,6 +155,54 @@ export const deleteQuestionRequest = (id) => {
     })
     .catch((error) => {
       console.log("API RESPONSE ERROR:", error);
+      throw new Error(error);
+    });
+};
+export const getAllCovidCaseRequest = () => {
+  console.log("Get All Covid Case Request");
+  return RequestHelper.get(`${apiUrl}/user/covid_case/all`)
+    .then((res) => {
+      console.log("res quest", res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+export const deleteCaseRequest = (id) => {
+  return RequestHelper.delete(`${apiUrl}/user/covid_case/${id}`)
+    .then((res) => {
+      console.log("API RESPONSE:", res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.log("API RESPONSE ERROR:", error);
+      throw new Error(error);
+    });
+};
+export const createNewCaseRequest = (id, covidStatus, dateRecord) => {
+  console.log({ id, covidStatus, dateRecord });
+  return RequestHelper.post(`${apiUrl}/user/covid_case`, {
+    id: id,
+    covidStatus: covidStatus,
+    dateRecord: dateRecord,
+  })
+    .then((res) => {
+      console.log("res quest", res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+export const getAllAccountRequest = () => {
+  console.log("Get All Covid Case Request");
+  return RequestHelper.get(`${apiUrl}/account/all`)
+    .then((res) => {
+      console.log("res quest", res.data);
+      return res.data;
+    })
+    .catch((error) => {
       throw new Error(error);
     });
 };
