@@ -16,6 +16,7 @@ export const signInRequest = ({ username, password }) => {
 export const getAllMedicalInformationRequest = () => {
   return RequestHelper.get(`${apiUrl}/user/medical_user/daily_checkin/all`)
     .then((res) => {
+      console.log("res data", res.data)
       return res.data;
     })
     .catch((error) => {

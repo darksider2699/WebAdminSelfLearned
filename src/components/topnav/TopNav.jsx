@@ -1,42 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./topnav.css";
 import Dropdown from "../dropdown/Dropdown";
-import notifications from "../../assets/JsonData/notification.json";
 import { Link } from "react-router-dom";
-const renderNotificationItem = (item, index) => {
-  return (
-    <div className="notification-item" key={index}>
-      <i className={item.icon}></i>
-      <span>{item.content}</span>
-    </div>
-  );
-};
+import { Box, Button, Typography } from "@material-ui/core/";
+import { logout } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 const TopNav = () => {
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    await dispatch(logout());
+    history.push("/login");
+  };
   return (
     <div className="topnav">
-      <div className="topnav__search">
-        <input type="text" placeholder="Search Here..." />
-        <i className="bx bx-search"></i>
-      </div>
       <div className="topnav__right">
         <div className="topnav__right-item">
-          <Dropdown icon="bx bx-user" />
-        </div>
-
-        <div className="topnav__right-item">
-          <Dropdown
-            icon="bx bx-bell"
-            badge="12"
-            contentData={notifications}
-            renderItems={(item, index) => renderNotificationItem(item, index)}
-            renderFooter={() => {
-              return <Link to="/">View All</Link>;
-            }}
-          />
-        </div>
-
-        <div className="topnav__right-item">
-          <Dropdown />
+          <Button
+            variant="outlined"
+            color="primary"
+            style={{ margin: "10px 0 20px 0px " }}
+            name="add"
+            onClick={handleLogout}
+          >
+            Log out
+          </Button>
         </div>
       </div>
     </div>

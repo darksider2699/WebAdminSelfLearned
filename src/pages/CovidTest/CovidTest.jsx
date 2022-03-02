@@ -17,13 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { flexbox, padding } from "@mui/system";
 import YesNoModal from "../../components/YesNoModal";
 import {createNewCase } from "../../store/slices/covidCaseSlice";
 
 const CovidTest = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [listTestAdded, setListTestAdded] = useState();
   const [isCreateNewCase, setIsCreateNewCase] = useState();
 
@@ -49,7 +47,6 @@ const CovidTest = () => {
   let id = 0;
   const [isShowTable, setIsShowTable] = useState(false);
   const handleWarningClick = (param) =>{
-    console.log("Param", param.target);
     setIdUserToCreateCase(param.target.value);
     setIsCreateNewCase(true);
   }
@@ -182,27 +179,23 @@ const CovidTest = () => {
     }
   };
   const handleFileUpload = (e) => {
-    console.log("eeeeeeeee", e.target.files.length);
     if (e.target.files.length > 0) {
       const files = e.target.files;
-      console.log(files);
       if (files) {
-        console.log(files[0]);
         Papa.parse(files[0], {
           complete: function (results) {
-            console.log("Finished:", results.data);
             let listData = results.data;
             let dateRecord = listData.shift();
             listData.pop();
-            console.log({ dateRecord, listData });
+            let temp = listData.slice(1);
             setListTestAdded([
-              ...listData.map((index) => {
+              ...temp.map((index) => {
                 return {
                   dateRecord: moment(new Date(dateRecord[0])).format(
                     "YYYY-MM-DD"
                   ),
                   idUser: index[0],
-                  isPositive: index[1] == 0 ? false : true,
+                  isPositive: index[9] == 0 ? false : true,
                 };
               }),
             ]);
@@ -212,6 +205,7 @@ const CovidTest = () => {
     }
   };
   const handleSubmitFile = async () => {
+    console.log("list", listTestAdded)
     if (listTestAdded === undefined) {
       toast("Nothing to add!");
       return;
@@ -238,14 +232,13 @@ const handleConfirmAddNewCase = async() => {
   );
   setIsCreateNewCase(false)
 }
-  console.log("LIST DATA ADDED: ", listTestAdded);
   return (
     <Box display={"block"}>
       <div className="submit-area">
         <span className="submit-text">Add new test result list:</span>
         <input
           type="file"
-          accept=".csv,.xlsx,.xls"
+          accept=".csv"
           onChange={handleFileUpload}
         />
         

@@ -32,6 +32,7 @@ const CheckInQuestion = () => {
         label, answerRequest, rightAnswerPosition,
         cb: () => {
           dispatch(getAllQuestion());
+          toast("Add new question success!")
         },
       })
     );

@@ -141,6 +141,7 @@ const Situation = ({ patientData , onUpdateData}) => {
             color: "red",
             cursor: "pointer",
             float: "right",
+            marginLeft:'10px'
           }}
           onClick={handleDeleteCovidCase}
         >

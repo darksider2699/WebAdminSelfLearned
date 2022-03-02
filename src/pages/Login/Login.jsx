@@ -82,8 +82,8 @@ export default function Login() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography component="h1" variant="h5" style ={{color: "white"}}>
+           Admin Login Page
           </Typography>
           <Box>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,18 +93,18 @@ export default function Login() {
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
-                    <TextField
-                      className={classes.input}
-                      margin="normal"
-                      required
-                      defaultValue={""}
-                      fullWidth
-                      id="username"
-                      label="Username"
-                      name="username"
-                      autoFocus
-                      {...field}
-                    />
+                  <TextField
+                    className={classes.input}
+                    margin="normal"
+                    required
+                    defaultValue={""}
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoFocus
+                    {...field}
+                  />
                 )}
               />
               <Controller
@@ -112,17 +112,17 @@ export default function Login() {
                 control={control}
                 defaultValue={""}
                 render={({ field }) => (
-                    <TextField
-                      className={classes.input}
-                      margin="normal"
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="current-password"
-                      {...field}
-                    />
+                  <TextField
+                    className={classes.input}
+                    margin="normal"
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    {...field}
+                  />
                 )}
               />
               {errors.password && (
@@ -130,18 +130,12 @@ export default function Login() {
                   Password must be required
                 </p>
               )}
-              <FormControlLabel
-                control={
-                  <Checkbox value="remember" style={{ color: "white" }} />
-                }
-                label="Remember me"
-                style={{ color: "white" }}
-              />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                style={{ marginTop: "10px" }}
               >
                 Sign In
               </Button>

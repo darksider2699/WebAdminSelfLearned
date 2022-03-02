@@ -65,7 +65,7 @@ const Overview = () => {
           ).length > 0
             ? listCheckinByDate?.filter(
                 (index) => index.medicalUserInformation.id === value?.id
-              )[0].allowTocome
+              )[0].allowToCome
             : false,
       };
     });
@@ -213,10 +213,13 @@ const Overview = () => {
     print: false,
     onRowClick: null,
     jumpToPage: true,
+    downloadOptions: { filename: `Check_in_status_on${dateRecord}` },
     searchPlaceholder: "Search",
     //count, // Use total number of items
   };
-  console.log("Local storage", listCheckinByDate)
+  console.log("Local storage", convertDataForTableUser(
+    medicalInformationDataList?.medicalUserInformationList
+  ))
   return (
     <div>
       <Box>

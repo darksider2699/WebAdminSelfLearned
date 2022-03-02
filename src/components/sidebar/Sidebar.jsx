@@ -2,7 +2,7 @@ import React from "react";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 import sidebar_item from "../../assets/JsonData/sidebar_routes.json";
-
+import logo from "../../assets/images/mgm-group-Logo-2015.png";
 const SidebarItem = (props) => {
   const active = props.active ? "active" : "";
   return (
@@ -22,7 +22,7 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
        <div className="sidebar__logo">
-      {/*  <img src={logo} alt="viet anh dep zai hihi" />*/}
+      {  <img src={logo} alt="viet anh dep zai hihi"  className="image"/>}
       </div> 
       {sidebar_item.map((item, index) => (
         <Link to={item.route} key={index}>

@@ -2,7 +2,7 @@
   padding: 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   height: var(--topnav-height);
 }
 
@@ -17,6 +17,11 @@
   overflow: hidden;
 }
 
+.topnav__right-item-warning{
+  color: rgb(235, 146, 146);
+  margin-right: 20px;
+
+}
 .topnav__search > input {
   height: 100%;
   width: 100%;
@@ -35,6 +40,7 @@
 
 .topnav__right {
   display: flex;
+  
   align-items: center;
 }
 .topnav__right-item ~ .topnav__right-item {
