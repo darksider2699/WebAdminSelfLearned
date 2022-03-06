@@ -181,7 +181,7 @@ const Overview = () => {
         customBodyRender: (value) => {
           return (
             <div className={`${value === true ? "green" : "red"}`}>
-              {value === true ? "Come" : value === false ? "Not Come" : "-"}
+              {value  ? "Come" : !value  ? "Not Come" : "-"}
             </div>
           );
         },

@@ -199,7 +199,6 @@ const Checkout = () => {
     },
   ];
   const handleRowClick = async (params, rowMeta) => {
-    console.log("Row Clicked", { params, rowMeta });
     await setIdUserToGetDetail(
       medicalInformationDataList.medicalUserInformationList[rowMeta.rowIndex].id
     );
@@ -239,7 +238,6 @@ const Checkout = () => {
   const handleOnChangeDate = async (event) => {
     await setDateRecord(event.target.value);
   };
-  console.log("Local storage", listCheckoutByDate)
 
   return (
     <Box marginLeft={0}>

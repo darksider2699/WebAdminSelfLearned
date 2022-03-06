@@ -205,7 +205,6 @@ const CovidTest = () => {
     }
   };
   const handleSubmitFile = async () => {
-    console.log("list", listTestAdded)
     if (listTestAdded === undefined) {
       toast("Nothing to add!");
       return;

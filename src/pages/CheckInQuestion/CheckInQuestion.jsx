@@ -59,7 +59,6 @@ const CheckInQuestion = () => {
   const hideModal = () => {
     setIsAddNewQuestionModalOpen(false);
   };
-  console.log("Question", allQuestion);
   return (
     <Box borderRadius={10} marginBottom={5}>
       <Box>

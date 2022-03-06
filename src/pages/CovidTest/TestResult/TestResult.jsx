@@ -5,7 +5,6 @@ const TestResult = ({ date, numberOfNegative, total, onClickRow, uniqueKey }) =>
   const handleOnClick = () => {
     onClickRow(date);
   };
-  console.log("Key", uniqueKey);
   return (
     <Box
       onClick={handleOnClick}

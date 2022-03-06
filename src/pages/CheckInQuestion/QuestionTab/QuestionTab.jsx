@@ -11,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const QuestionTab = ({ question, type, onSave, onUpdateData }) => {
-  console.log({ type, question });
   const idQuestion = question.id;
   const dispatch = useDispatch();
   const [listAnswer, setListAnswer] = useState([...question.answerList]);
@@ -22,7 +21,6 @@ const QuestionTab = ({ question, type, onSave, onUpdateData }) => {
   const [isYesNoModalDeleteQuestionVisible, setIsYesNoModalDeleteQuestionVisible] = useState(false);
   const [labelQuestion, setLabelQuestion] = useState(question.label);
   const handleAnswerChange = (event) => {
-    console.log(event.currentTarget.type);
     let type = event.currentTarget.getAttribute("name");
     switch (type) {
       case "add":
@@ -31,13 +29,11 @@ const QuestionTab = ({ question, type, onSave, onUpdateData }) => {
         setListAnswer([...temp]);
         break;
       case "delete":
-        console.log("event.currentTarget.id", event.currentTarget.id);
         let delArr = [...listAnswer];
         let indexDelete = delArr.findIndex(
           (e) => e.id === event.currentTarget.id
         );
         delArr.splice(indexDelete, 1);
-        console.log({ indexDelete, delArr });
         setListAnswer([...delArr]);
         break;
       case "save":
@@ -59,20 +55,14 @@ const QuestionTab = ({ question, type, onSave, onUpdateData }) => {
     }
   };
   const handleChange = (event) => {
-    console.log("Change select", event);
     setCorrectAnswer({ id: event.target.value });
   };
   const handleEditTextfield = (event) => {
-    console.log("Event", event.target?.value);
     if (event.target.name === "answer") {
       let tempAnswerList = listAnswer;
-      console.log("tempAnswerList", tempAnswerList);
       let indexObj = tempAnswerList.findIndex(
         (index) => index.id == event.target?.id
       );
-      console.log("event.target?.id", event.target.id);
-      console.log("index obj", indexObj);
-      console.log("tempAnswerList[indexObj]", tempAnswerList[indexObj].label);
       tempAnswerList[indexObj] = {
         id: tempAnswerList[indexObj].id,
         label: event.target.value,

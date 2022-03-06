@@ -13,10 +13,34 @@ export const signInRequest = ({ username, password }) => {
       throw new Error(error);
     });
 };
+export const signupRequest = ({ username, password, role }) => {
+  console.log("user Api signup", username, password, role)
+  return RequestHelper.post(`${apiUrl}/auth/signup`, {
+    username: username,
+    password: password,
+    role: Array.of(role)
+  })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+export const getAllRoleRequest = () => {
+  return RequestHelper.get(`${apiUrl}/account/role/all`)
+    .then((res) => {
+      console.log("role data api", res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
 export const getAllMedicalInformationRequest = () => {
   return RequestHelper.get(`${apiUrl}/user/medical_user/daily_checkin/all`)
     .then((res) => {
-      console.log("res data", res.data)
+      console.log("res data", res.data);
       return res.data;
     })
     .catch((error) => {

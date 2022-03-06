@@ -13,7 +13,6 @@ const handleError = (error) => {
     }
     throw new Error(message);
   } else if (error.request) {
-    toast.warn("Network error!")
     throw new Error(error.request);
   } else {
     console.log("An unknown error has occurred!");
@@ -25,14 +24,14 @@ export default class RequestHelper {
     return {
       accept: "application/json",
       contentType: "application/json",
-      Authorization: 'Bearer ' + localStorage.getItem("token"),
+      Authorization: "Bearer " + localStorage.getItem("token"),
       ...config,
     };
   }
   static async get(apiUrl, params) {
-    console.log("Helper")
+    console.log("Helper");
     const header = await this.getHeader();
-    console.log("header", header)
+    console.log("header", header);
     return instance
       .get(apiUrl, {
         headers: header,
@@ -61,7 +60,7 @@ export default class RequestHelper {
         return data;
       })
       .catch((e) => {
-        console.log("helper" , e)
+        console.log("helper", e);
         handleError(e);
         throw e;
       });
@@ -77,7 +76,7 @@ export default class RequestHelper {
         return data;
       })
       .catch((e) => {
-        console.log('e:', e)
+        console.log("e:", e);
         handleError(e);
         throw e;
       });
